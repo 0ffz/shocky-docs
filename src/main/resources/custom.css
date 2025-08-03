@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@plugin "@tailwindcss/typography";
+@source "../../out";
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: auto;
+    src: url(/assets/fonts/JetBrainsMono-Regular.woff2) format('woff2');
+}
+
+@theme {
+    --font-mono: "JetBrains Mono", monospace;
+}
+@layer components {
+    .topbar-content {
+        a {
+            @apply text-zinc-900 dark:text-zinc-50;
+        }
+    }
+    .sidebar-content  {
+        ul ul {
+            @apply pl-2 space-y-1 border-l border-zinc-200 dark:border-zinc-700;
+        }
+
+        li {
+            @apply my-1;
+        }
+
+        a {
+            @apply flex items-center py-2 md:py-1 px-3 md:px-2 text-sm rounded-md;
+            @apply hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300;
+
+        }
+        .selected {
+            @apply bg-orange-100 font-semibold dark:bg-orange-900 text-orange-700 dark:text-orange-100;
+            @apply hover:bg-orange-100 dark:hover:bg-orange-900
+        }
+
+        a svg {
+            @apply shrink-0 w-4 h-4 mr-1;
+        }
+
+        h1 {
+            @apply  font-semibold pt-2;
+        }
+    }
+}
+
+.icon {
+    @apply inline-block shrink-0 w-5 h-5;
+}
+
+.prose h2 {
+    @apply flex items-center;
+    .icon {
+        @apply w-6 h-6 mr-1;
+    }
+}
+
+@utility full-bleed {
+    width: 100%;
+    grid-column: 1 / 4 !important;
+}
+
+@utility wrapper {
+    display: grid;
+    grid-template-columns: 1fr min(1080px, calc(100% - 40px)) 1fr;
+    /*grid-column-gap: 24px;*/
+    grid-row-gap: 0;
+    * {
+        grid-column: 2;
+    }
+}
+
+@utility break-word {
+    word-break: break-word;
+}
+.image-small {
+    max-width: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-medium {
+    max-width: 600px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image-large {
+    max-width: 800px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+:root {
+    color-scheme: dark;
+}
