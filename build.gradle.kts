@@ -9,10 +9,12 @@ plugins {
 repositories {
     mavenCentral()
     maven("https://repo.mineinabyss.com/releases")
+    maven("https://repo.mineinabyss.com/snapshots")
 }
 
 dependencies {
-    implementation("me.dvyy:shocky:0.2.0")
+    implementation("me.dvyy:shocky:0.3.0-dev.1")
+    implementation("me.dvyy:shocky-icons:0.3.0-dev.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 }
 
@@ -28,6 +30,9 @@ application {
 }
 
 tasks {
+    shadowJar {
+        archiveFileName.set("shocky-docs.jar")
+    }
     register("generate") {
         run.get().args("generate")
         finalizedBy(run)
