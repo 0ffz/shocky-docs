@@ -1,0 +1,24 @@
+package me.dvyy.shocky.docs
+
+import kotlinx.html.FlowContent
+import kotlinx.html.ul
+import kotlinx.html.unsafe
+import me.dvyy.shocky.markdownToHTML
+import me.dvyy.shocky.page.Page
+import me.dvyy.shocky.page.Pages
+import me.dvyy.shocky.site
+import kotlin.io.path.Path
+
+context(page: Page)
+fun FlowContent.navItems() {
+    // This could be dynamically generated based on your documentation structure
+    ul("sidebar-content space-y-1") {
+        val content = site.pages["SUMMARY.md"]?.content ?: ""
+        val currentUrl = page.meta.url
+        val renderedContent = content
+            .renderMarkdownIcons()
+            .markdownToHTML()
+            .replace("""href="$currentUrl"""", """href="$currentUrl" class="selected"""")
+        unsafe { +renderedContent }
+    }
+}
