@@ -4,6 +4,7 @@ import kotlinx.html.FlowContent
 import kotlinx.html.a
 import kotlinx.html.button
 import kotlinx.html.div
+import me.dvyy.shocky.icons.Icons
 import me.dvyy.shocky.markdown
 import me.dvyy.shocky.page.Page
 import me.dvyy.shocky.page.Pages
@@ -29,7 +30,7 @@ fun FlowContent.topBar(config: DocsConfig) {
 
         div("topbar-content flex items-center gap-4") {
             div("gap-4 max-sm:hidden") {
-                markdown(topbarContent?.renderMarkdownIcons() ?: "")
+                markdown(Icons.renderFromMarkdown(topbarContent ?: ""))
             }
 
             // Mobile menu toggle button (only visible on small screens)

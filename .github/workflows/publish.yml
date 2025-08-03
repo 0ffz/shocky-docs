@@ -23,5 +23,5 @@ jobs:
         with:
           build-tasks: 'shadowJar'
           release-files: 'build/libs/shocky-docs.jar'
-          maven-username: ${{ secrets.MAVEN_PUBLISH_USERNAME }}
-          maven-password: ${{ secrets.MAVEN_PUBLISH_PASSWORD }}
+#          maven-username: ${{ secrets.MAVEN_PUBLISH_USERNAME }}
+#          maven-password: ${{ secrets.MAVEN_PUBLISH_PASSWORD }}

@@ -1,13 +1,14 @@
 package me.dvyy.shocky.docs
 
 import kotlinx.html.*
+import me.dvyy.shocky.icons.Icons
 import me.dvyy.shocky.markdown
 import me.dvyy.shocky.page.Page
 import me.dvyy.shocky.site
 
 context(page: Page)
 inline fun docsTemplate(
-    crossinline init: FlowContent.() -> Unit = { markdown(page.content.renderMarkdownIcons()) },
+    crossinline init: FlowContent.() -> Unit = { markdown(Icons.renderFromMarkdown(page.content)) },
 ) = page.html {
     val docsConfig = site.readFile<DocsConfig>("config.yml")
     head {
