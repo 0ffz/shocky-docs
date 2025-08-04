@@ -13,8 +13,8 @@ repositories {
 }
 
 dependencies {
-    implementation("me.dvyy:shocky:0.3.0-dev.1")
-    implementation("me.dvyy:shocky-icons:0.3.0-dev.1")
+    implementation("me.dvyy:shocky:0.3.0-dev.2")
+    implementation("me.dvyy:shocky-icons:0.3.0-dev.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 }
 
