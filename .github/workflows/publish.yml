@@ -19,9 +19,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: MineInAbyss/publish-action@better-semver
+      - uses: MineInAbyss/publish-action@v3
         with:
-          build-tasks: 'shadowJar'
+          build-tasks: 'shadowJar publish'
           release-files: 'build/libs/shocky-docs.jar'
-#          maven-username: ${{ secrets.MAVEN_PUBLISH_USERNAME }}
-#          maven-password: ${{ secrets.MAVEN_PUBLISH_PASSWORD }}
+          maven-username: ${{ secrets.MAVEN_PUBLISH_USERNAME }}
+          maven-password: ${{ secrets.MAVEN_PUBLISH_PASSWORD }}

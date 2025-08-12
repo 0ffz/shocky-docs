@@ -2,7 +2,8 @@ plugins {
     application
     kotlin("jvm") version "2.2.0"
     kotlin("plugin.serialization") version "2.2.0"
-    id("com.gradleup.shadow") version "9.0.0-rc3"
+    id("com.gradleup.shadow") version "9.0.1"
+    `maven-publish`
 }
 
 
@@ -26,7 +27,7 @@ kotlin {
 }
 
 application {
-    mainClass = "MainKt"
+    mainClass = "me.dvyy.shocky.docs.MainKt"
 }
 
 tasks {
@@ -40,5 +41,13 @@ tasks {
     register("serve") {
         run.get().args("serve", "dev")
         finalizedBy(run)
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["kotlin"])
+        }
     }
 }
