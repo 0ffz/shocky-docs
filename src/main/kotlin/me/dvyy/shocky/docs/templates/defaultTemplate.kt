@@ -1,32 +1,47 @@
-package me.dvyy.shocky.docs
+package me.dvyy.shocky.docs.templates
 
 import kotlinx.html.*
+import me.dvyy.shocky.docs.DocsConfig
+import me.dvyy.shocky.docs.docsBody
 import me.dvyy.shocky.icons.Icons
 import me.dvyy.shocky.markdown
 import me.dvyy.shocky.page.Page
 import me.dvyy.shocky.site
 
 context(page: Page)
-inline fun docsTemplate(
+inline fun defaultTemplate(
     crossinline init: FlowContent.() -> Unit = { markdown(Icons.renderFromMarkdown(page.content)) },
 ) = page.html {
-    val docsConfig = site.readFile<DocsConfig>("config.yml")
+    val docsConfig = site.inject<DocsConfig>()
     head {
         meta(charset = "utf-8")
         meta(name = "viewport", content = "width=device-width, initial-scale=1.0")
-        link(rel = LinkRel.stylesheet, href = "/assets/tailwind/styles.css")
-        script(src = "/assets/scripts/prism.js") {}
-        link(rel = LinkRel.stylesheet, href = "/assets/scripts/prism.css")
-        link(rel = LinkRel.stylesheet, href = "/assets/scripts/theme-darcula.css")
-        link(rel = "icon", href = "/assets/favicon.svg")
+        link(rel = LinkRel.stylesheet, href = "${site.rootUrl}/assets/tailwind/styles.css")
+        link(rel = "icon", href = "${site.rootUrl}/${docsConfig.favicon}")
 
+        if (docsConfig.usePrism) {
+            script(src = "${site.rootUrl}/assets/scripts/prism.js") {}
+            link(rel = LinkRel.stylesheet, href = "${site.rootUrl}/assets/scripts/prism.css")
+            link(rel = LinkRel.stylesheet, href = "${site.rootUrl}/assets/scripts/theme-darcula.css")
+        }
+
+        // Mermaid themes witcher
+        if (docsConfig.useMermaid) script(type = "module") {
+            unsafe {
+                +"""
+                import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+                var mermaidTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? "default" : "dark";
+                mermaid.initialize({ startOnLoad: true, theme: mermaidTheme, });
+                """.trimIndent()
+            }
+        }
         // Theme switcher script
-        script(type = "text/javascript") {
+        if (docsConfig.usePrism) script(type = "text/javascript") {
             unsafe {
                 +"""
                 (function(){
-                    var light = '/assets/scripts/theme-duotone-light.css';
-                    var dark = '/assets/scripts/theme-darcula.css';
+                    var light = '${site.rootUrl}/assets/scripts/theme-duotone-light.css';
+                    var dark = '${site.rootUrl}/assets/scripts/theme-darcula.css';
                     // If the media query isn't supported, the dark theme will be used as default
                     var theme = window.matchMedia('(prefers-color-scheme: light)').matches ? light : dark;
 

@@ -7,9 +7,7 @@ import kotlinx.html.div
 import me.dvyy.shocky.icons.Icons
 import me.dvyy.shocky.markdown
 import me.dvyy.shocky.page.Page
-import me.dvyy.shocky.page.Pages
 import me.dvyy.shocky.site
-import kotlin.io.path.Path
 
 context(page: Page)
 fun FlowContent.topBar(config: DocsConfig) {
@@ -36,7 +34,7 @@ fun FlowContent.topBar(config: DocsConfig) {
             // Mobile menu toggle button (only visible on small screens)
             button(classes = "md:hidden p-2 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700") {
                 attributes["aria-label"] = "Toggle navigation menu"
-                attributes["onclick"] = "document.getElementById('docs-sidebar').classList.toggle('-translate-x-full')"
+                attributes["onclick"] = "var list = document.getElementById('docs-sidebar').classList;list.toggle('-translate-x-full');list.toggle('no-doc-scroll')"
 
                 // Hamburger icon
                 div("w-6 space-y-1.5") {

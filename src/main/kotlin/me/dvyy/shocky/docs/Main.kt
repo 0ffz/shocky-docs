@@ -1,6 +1,9 @@
 package me.dvyy.shocky.docs
 
 import me.dvyy.shocky.AssetSource
+import me.dvyy.shocky.Site
+import me.dvyy.shocky.docs.templates.defaultTemplate
+import me.dvyy.shocky.docs.templates.landingTemplate
 import me.dvyy.shocky.shocky
 import kotlin.io.path.Path
 import kotlin.io.path.div
@@ -10,8 +13,14 @@ suspend fun main(args: Array<String>) {
     shocky(
         watch = listOf(Path(path))
     ) {
+        val docsConfig = Site.readFile<DocsConfig>(Path(path) / "config.yml", default = { DocsConfig() })
+        provide<DocsConfig>(docsConfig)
+        provide<DocsTheme>(docsConfig.theme)
+
+        siteUrl = docsConfig.siteUrl
+
         dest("out")
-        assets("docs/assets")
+        assets("$path/assets")
         assetsFromResources(
             "assets/favicon.svg",
             "assets/scripts/prism.js",
@@ -26,7 +35,8 @@ suspend fun main(args: Array<String>) {
             inputCss = Path("build/extracted") / "custom.css"
         }
         routing {
-            template("default") { docsTemplate() }
+            template("default") { defaultTemplate() }
+            template("landing") { landingTemplate() }
             includeDirectory(".")
         }
     }.run(args)
