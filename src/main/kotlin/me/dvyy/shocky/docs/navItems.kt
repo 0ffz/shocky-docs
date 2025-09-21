@@ -6,9 +6,7 @@ import kotlinx.html.unsafe
 import me.dvyy.shocky.icons.Icons
 import me.dvyy.shocky.markdownToHTML
 import me.dvyy.shocky.page.Page
-import me.dvyy.shocky.page.Pages
 import me.dvyy.shocky.site
-import kotlin.io.path.Path
 
 context(page: Page)
 fun FlowContent.navItems() {
@@ -16,8 +14,9 @@ fun FlowContent.navItems() {
     ul("sidebar-content space-y-1") {
         val content = site.pages["SUMMARY.md"]?.content ?: ""
         val currentUrl = page.meta.url
-        val renderedContent = Icons.renderFromMarkdown(content)
+        val renderedContent = Icons.renderFromMarkdown(content
             .markdownToHTML()
+        )
             .replace("""href="$currentUrl"""", """href="$currentUrl" class="selected"""")
         unsafe { +renderedContent }
     }

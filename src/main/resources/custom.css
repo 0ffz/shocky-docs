@@ -17,26 +17,55 @@
 @theme {
     --font-mono: "JetBrains Mono", monospace;
 }
+
+/*
+Admonition-like block containing highlighted information
+ */
+.info, .error, .success, .warning {
+    @apply border-l-4 p-4 my-4 rounded-md break-words;
+
+    *:first-child {
+        @apply my-0;
+    }
+}
+
+@utility info {
+    @apply border-blue-500 bg-blue-100 dark:bg-blue-950;
+}
+
+@utility error {
+    @apply border-red-500 bg-red-100 dark:bg-red-950;
+}
+
+@utility warning {
+    @apply border-yellow-500 bg-yellow-100 dark:bg-yellow-950;
+}
+
+@utility success {
+    @apply border-green-500 bg-green-100 dark:bg-green-950;
+}
 @layer components {
     .topbar-content {
-        a {
+        a, li {
             @apply text-zinc-900 dark:text-zinc-50;
         }
     }
-    .sidebar-content  {
+
+    .sidebar-content {
         ul ul {
             @apply pl-2 space-y-1 border-l border-zinc-200 dark:border-zinc-700;
         }
 
         li {
             @apply my-1;
+            @apply text-zinc-700 dark:text-zinc-300 text-sm;
+
+            a {
+                @apply hover:bg-zinc-200 dark:hover:bg-zinc-800 py-2 md:py-1 px-3 md:px-2;
+                @apply flex items-center rounded-md;
+            }
         }
 
-        a {
-            @apply flex items-center py-2 md:py-1 px-3 md:px-2 text-sm rounded-md;
-            @apply hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300;
-
-        }
         .selected {
             @apply bg-orange-100 font-semibold dark:bg-orange-900 text-orange-700 dark:text-orange-100;
             @apply hover:bg-orange-100 dark:hover:bg-orange-900
@@ -47,7 +76,7 @@
         }
 
         h1 {
-            @apply  font-semibold pt-2;
+            @apply font-semibold pt-2;
         }
     }
 }
@@ -57,7 +86,8 @@
 }
 
 .prose h2 {
-    @apply flex items-center;
+    @apply items-center;
+
     .icon {
         @apply w-6 h-6 mr-1;
     }

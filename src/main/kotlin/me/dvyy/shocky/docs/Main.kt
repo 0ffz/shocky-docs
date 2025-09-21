@@ -13,6 +13,7 @@ suspend fun main(args: Array<String>) {
         dest("out")
         assets("docs/assets")
         assetsFromResources(
+            "assets/favicon.svg",
             "assets/scripts/prism.js",
             "assets/scripts/prism.css",
             "assets/scripts/theme-duotone-light.css",

@@ -18,6 +18,7 @@ inline fun docsTemplate(
         script(src = "/assets/scripts/prism.js") {}
         link(rel = LinkRel.stylesheet, href = "/assets/scripts/prism.css")
         link(rel = LinkRel.stylesheet, href = "/assets/scripts/theme-darcula.css")
+        link(rel = "icon", href = "/assets/favicon.svg")
 
         // Theme switcher script
         script(type = "text/javascript") {
