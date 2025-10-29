@@ -72,19 +72,22 @@ Admonition-like block containing highlighted information
 
     .sidebar-content {
         ul ul {
-            @apply ml-4 md:ml-3 pl-2 md:pl-1 space-y-1 border-l border-zinc-200 dark:border-zinc-700;
+            @apply ml-3 md:ml-3 pl-2 md:pl-1 space-y-1 border-l border-zinc-200 dark:border-zinc-700;
         }
 
         li {
-            @apply my-1;
+            @apply py-2 md:py-1 my-1;
+            @apply ps-2 md:ps-2;
             @apply text-zinc-700 dark:text-zinc-300 text-sm;
 
             a {
-                @apply hover:bg-zinc-200 dark:hover:bg-zinc-800 py-2 md:py-1 px-3 md:px-2 -ml-3 md:-ml-2;
+                @apply hover:bg-zinc-200 dark:hover:bg-zinc-800 py-2 md:py-1 -my-2 md:-my-1 px-2 md:px-2 -ml-2 md:-ml-2;
                 @apply flex items-center rounded-md gap-1;
             }
 
-            @apply px-3 md:px-2
+            ul {
+                @apply mt-3 md:mt-2;
+            }
         }
         .selected {
             @apply bg-orange-100 font-semibold dark:bg-orange-900 text-orange-700 dark:text-orange-100;
