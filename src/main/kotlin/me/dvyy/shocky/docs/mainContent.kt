@@ -16,7 +16,7 @@ fun FlowContent.mainContent(content: FlowContent.() -> Unit) {
             prose-a:text-${theme.textColor}-500 prose-a:hover:${theme.textColor}-400
             dark:prose-a:text-${theme.textColor}-300 dark:prose-a:hover:${theme.textColor}-200
             prose-a:no-underline
-            prose-img:mx-auto prose-img:my-3
+            prose-img:inline-block prose-img:my-0
             h-auto
             prose-figcaption:mx-auto prose-figcaption:italic prose-figcaption:mt-0 prose-figcaption:mb-2 prose-figcaption:px-4
             wrapper

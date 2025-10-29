@@ -21,6 +21,10 @@ fun FlowContent.sidebar() {
     ) {
         id = "docs-sidebar"
 
+        div("sm:hidden border-b border-zinc-200 dark:border-zinc-800 py-4 px-4") {
+            topbarLinks()
+        }
+
         // Navigation content
         div("px-4 py-2") {
 //            h2("text-xl font-semibold text-zinc-800 dark:text-zinc-100 mb-4") {

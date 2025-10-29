@@ -3,3 +3,4 @@ plugins {
 }
 rootProject.name = "shocky-docs"
 
+includeBuild("../shocky")

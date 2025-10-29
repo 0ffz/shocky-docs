@@ -52,16 +52,27 @@ Admonition-like block containing highlighted information
 @utility success {
     @apply border-green-500 bg-green-100 dark:bg-green-950;
 }
+
+@utility primary-button {
+    @apply bg-orange-100 dark:bg-orange-900 py-2 px-3 rounded-full text-orange-700 dark:text-orange-100;
+}
+
+@utility center {
+    @apply flex justify-center items-center;
+}
+
 @layer components {
     .topbar-content {
+        @apply text-zinc-900 dark:text-zinc-50;
+
         a, li {
-            @apply text-zinc-900 dark:text-zinc-50;
+            @apply flex items-center gap-1;
         }
     }
 
     .sidebar-content {
         ul ul {
-            @apply pl-2 space-y-1 border-l border-zinc-200 dark:border-zinc-700;
+            @apply ml-4 md:ml-3 pl-2 md:pl-1 space-y-1 border-l border-zinc-200 dark:border-zinc-700;
         }
 
         li {
@@ -69,22 +80,23 @@ Admonition-like block containing highlighted information
             @apply text-zinc-700 dark:text-zinc-300 text-sm;
 
             a {
-                @apply hover:bg-zinc-200 dark:hover:bg-zinc-800 py-2 md:py-1 px-3 md:px-2;
-                @apply flex items-center rounded-md;
+                @apply hover:bg-zinc-200 dark:hover:bg-zinc-800 py-2 md:py-1 px-3 md:px-2 -ml-3 md:-ml-2;
+                @apply flex items-center rounded-md gap-1;
             }
-        }
 
+            @apply px-3 md:px-2
+        }
         .selected {
             @apply bg-orange-100 font-semibold dark:bg-orange-900 text-orange-700 dark:text-orange-100;
             @apply hover:bg-orange-100 dark:hover:bg-orange-900
         }
 
-        a svg {
-            @apply shrink-0 w-4 h-4 mr-1;
+        h1 {
+            @apply font-semibold pt-2 flex items-center gap-1;
         }
 
-        h1 {
-            @apply font-semibold pt-2;
+        h2 {
+            @apply text-sm font-semibold pt-1 flex items-center gap-1;
         }
     }
 }

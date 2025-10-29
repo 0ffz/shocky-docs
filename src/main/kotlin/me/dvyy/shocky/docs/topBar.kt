@@ -24,17 +24,16 @@ fun FlowContent.topBar(config: DocsConfig) {
             +config.name
         }
 
-        val topbarContent = site.pages["TOPBAR.md"]?.content
-
-        div("topbar-content flex items-center gap-4") {
-            div("gap-4 max-sm:hidden") {
-                markdown(Icons.renderFromMarkdown(topbarContent ?: ""))
+        div("flex items-center gap-4") {
+            div("max-sm:hidden") {
+                topbarLinks()
             }
 
             // Mobile menu toggle button (only visible on small screens)
             button(classes = "md:hidden p-2 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700") {
                 attributes["aria-label"] = "Toggle navigation menu"
-                attributes["onclick"] = "var list = document.getElementById('docs-sidebar').classList;list.toggle('-translate-x-full');list.toggle('no-doc-scroll')"
+                attributes["onclick"] =
+                    "var list = document.getElementById('docs-sidebar').classList;list.toggle('-translate-x-full');list.toggle('no-doc-scroll')"
 
                 // Hamburger icon
                 div("w-6 space-y-1.5") {
@@ -44,5 +43,14 @@ fun FlowContent.topBar(config: DocsConfig) {
                 }
             }
         }
+    }
+}
+
+context(page: Page)
+fun FlowContent.topbarLinks() {
+    val topbarContent = site.pages["TOPBAR.md"]?.content
+
+    div("topbar-content flex items-center gap-4 overflow-x-auto text-nowrap") {
+        markdown(Icons.renderFromMarkdown(topbarContent ?: ""))
     }
 }
