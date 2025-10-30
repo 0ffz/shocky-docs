@@ -9,5 +9,6 @@ data class DocsConfig(
     val favicon: String = "assets/favicon.svg",
     val useMermaid: Boolean = true,
     val usePrism: Boolean = true,
-    val theme: DocsTheme = DocsTheme()
+    val theme: DocsTheme = DocsTheme(),
+    val redirects: Map<String, String> = emptyMap(),
 )

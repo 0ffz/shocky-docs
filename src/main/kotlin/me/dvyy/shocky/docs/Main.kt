@@ -4,6 +4,7 @@ import me.dvyy.shocky.AssetSource
 import me.dvyy.shocky.Site
 import me.dvyy.shocky.docs.templates.defaultTemplate
 import me.dvyy.shocky.docs.templates.landingTemplate
+import me.dvyy.shocky.docs.templates.redirect
 import me.dvyy.shocky.shocky
 import kotlin.io.path.Path
 import kotlin.io.path.div
@@ -38,6 +39,13 @@ suspend fun main(args: Array<String>) {
             template("default") { defaultTemplate() }
             template("landing") { landingTemplate() }
             includeDirectory(".")
+
+            docsConfig.redirects.forEach { (from, to) ->
+                println("Including redirect from $from to $to")
+                include(from, frontMatter = "{ title: Redirecting... }") {
+                    redirect(to)
+                }
+            }
         }
     }.run(args)
 }

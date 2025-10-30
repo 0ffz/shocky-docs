@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    implementation("me.dvyy:shocky:0.3.0-dev.5")
-    implementation("me.dvyy:shocky-icons:0.3.0-dev.5")
+    implementation("me.dvyy:shocky:0.3.0-dev.6")
+    implementation("me.dvyy:shocky-icons:0.3.0-dev.6")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 }
 
